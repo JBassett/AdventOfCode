@@ -1,6 +1,7 @@
 package com.github.jbassett.y2024.d07
 
 import java.io.InputStream
+import java.util.stream.Collectors
 
 class Part2 {
     enum class Operation {
@@ -27,7 +28,7 @@ class Part2 {
                 }
             }
             println("Total: $total, AllOpSize: ${allOperations.size}")
-            allOperations.forEach { operation ->
+            val valid = allOperations.parallelStream().anyMatch { operation ->
                 var acc = inputs[0]
                 for (i in 1..<inputs.size) {
                     val two = inputs[i]
@@ -40,11 +41,13 @@ class Part2 {
                         break
                     }
                 }
-                if (acc == total) {
-                    return@map total
-                }
+                return@anyMatch acc == total
             }
-            return@map 0
+            if (valid) {
+                total
+            } else {
+                0
+            }
         }.sum()
     }
 }
