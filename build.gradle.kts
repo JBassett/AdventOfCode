@@ -16,9 +16,13 @@ repositories {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0")
     testImplementation(kotlin("test"))
 }
 
 tasks.test {
     useJUnitPlatform()
+    // set heap size for the test JVM(s)
+    minHeapSize = "128m"
+    maxHeapSize = "8g"
 }
