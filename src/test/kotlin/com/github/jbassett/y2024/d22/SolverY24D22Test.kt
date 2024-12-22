@@ -40,6 +40,22 @@ class SolverY24D22Test {
         assertEquals(14392541715, answer)
     }
 
+    @Test
+    fun part2_sample(){
+        val input = """
+            1
+            2
+            3
+            2024
+        """.trimIndent().split("\n")
+        val answer = SolverY24D22.part2(input)
+        assertEquals(23, answer)
+    }
 
-
+    @Test
+    fun part2(){
+        val input = javaClass.getClassLoader().getResourceAsStream("2024/22/input.txt")!!.bufferedReader().readLines()
+        val answer = SolverY24D22.part2(input)
+        assertEquals(1628, answer)
+    }
 }
